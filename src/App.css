@@ -1,3 +1,358 @@
+/* Fuentes personalizadas */
+
+/* Definir la fuente Centra con diferentes pesos */
+@font-face {
+  font-family: Centra;
+  src: url("./assets/font/CentraNo2-Bold.ttf");
+  font-weight: 700;
+}
+@font-face {
+  font-family: Centra;
+  src: url("./assets/font/CentraNo2-Medium.ttf");
+  font-weight: 500;
+}
+@font-face {
+  font-family: Centra;
+  src: url("./assets/font/CentraNo2-Book.ttf");
+  font-weight: 400;
+}
+
+/* Estilos globales por defecto */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* Asegura que los elementos no sobresalgan por el padding o margin */
+}
+
+html {
+  scroll-behavior: smooth; /* Activar desplazamiento suave */
+  scroll-padding: top 75px; /* Añadir espacio superior en desplazamiento */
+}
+
+body {
+  font-weight: 400;
+  overflow-x: hidden; /* Evita el scroll horizontal */
+  position: relative;
+  background-color: #121212 !important; /* Fondo oscuro para el cuerpo */
+  color: #fff !important; /* Color blanco para el texto */
+  font-family: "Centra", sans-serif !important; /* Usar fuente personalizada */
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  padding: 0;
+  line-height: normal;
+}
+
+/* Estilos para la barra de navegación */
+nav.navbar {
+  padding: 18px 0;
+  position: fixed; /* Mantiene la barra de navegación fija en la parte superior */
+  width: 100%;
+  top: 0;
+  z-index: 9999; /* Asegura que esté sobre otros elementos */
+  transition: 0.3s ease-in-out; /* Animación suave */
+}
+
+nav.navbar.scrolled {
+  background-color: #121212 !important; /* Fondo oscuro cuando se desplaza */
+  padding: 0px 0; /* Elimina padding cuando se desplaza */
+}
+
+nav.navbar a.avbar-brand {
+  width: 9%; /* Ajuste del tamaño del logo */
+}
+
+nav.navbar .navbar-nav .nav-link.navbar-link {
+  font-weight: 400;
+  color: #fff;
+  letter-spacing: 0.8px;
+  padding: 0 25px;
+  font-size: 18px;
+  opacity: 0.75; /* Opacidad inicial de los enlaces */
+}
+
+/* Efecto de hover en los enlaces de la barra de navegación */
+nav.navbar .navbar-nav .nav-link.navbar-link:hover,
+nav.navbar .navbar-nav .nav-link.navbar-link.active {
+  opacity: 1; /* Mayor opacidad al pasar el ratón */
+}
+
+/* Estilos para los iconos sociales */
+.social-icon {
+  display: inline-block;
+  margin-left: 14px;
+}
+
+.social-icon a {
+  width: 42px;
+  height: 42px;
+  background: rgba(217, 217, 217, 0.1);
+  display: inline-flex;
+  border-radius: 50%;
+  margin-right: 6px;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.social-icon a::before {
+  content: "";
+  width: 42px;
+  height: 42px;
+  position: absolute;
+  background-color: #ffffff;
+  border-radius: 50%;
+  transform: scale(0);
+  transition: all 0.3s ease-in-out;
+}
+
+/* Animación de los iconos sociales al pasar el ratón */
+.social-icon a:hover::before {
+  transform: scale(1);
+}
+
+.social-icon a img {
+  width: 40%;
+  z-index: 1;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Efecto de hover en las imágenes de los iconos sociales */
+.social-icon a:hover img {
+  filter: brightness(0) saturate(100%) invert(0%) sepia(7%) saturate(98%) hue-rotate(346deg) brightness(100%) contrast(100%);
+}
+
+/* Estilos para el botón "Let's Connect" */
+.navbar-text button {
+  font-weight: 700;
+  color: #fff;
+  border: 1px solid #fff;
+  padding: 18px 34px;
+  font-size: 18px;
+  margin-left: 18px;
+  position: relative;
+  background-color: transparent;
+  transition: all 0.3s ease-in-out;
+  z-index: 10;
+}
+
+.navbar-text button::before {
+  content: "";
+  width: 0%;
+  height: 100%;
+  position: absolute;
+  background-color: #fff;
+  left: 0;
+  top: 0;
+  z-index: -1;
+  transition: width 0.3s ease-in-out;
+}
+
+/* Efecto de hover en el botón "Let's Connect" */
+.navbar-text button:hover {
+  color: #121212 !important;
+  background-color: #fff !important;
+  border: 1px solid #121212 !important;
+}
+
+.navbar-text button:hover::before {
+  width: 100%; /* Expande el subrayado al pasar el ratón */
+}
+
+/* Estilos para el menú desplegable */
+nav.navbar .navbar-toggler:active,
+nav.navbar .navbar-toggler:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+nav.navbar .navbar-toggler-icon {
+  width: 24px;
+  height: 17px;
+  background-image: none;
+  position: relative;
+  border-bottom: 2px solid #fff;
+  transition: all 300ms linear;
+  top: -2px;
+}
+
+/* Estilos para la animación del icono de la hamburguesa */
+nav.navbar .navbar-toggler-icon::after,
+nav.navbar .navbar-toggler-icon::before {
+  width: 24px;
+  height: 2px;
+  position: absolute;
+  background-color: #fff;
+  top: 0;
+  left: 0;
+  content: "";
+  z-index: 2;
+  transition: all 300ms linear;
+}
+
+nav.navbar .navbar-toggler-icon::after {
+  top: 8px;
+}
+
+nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon:after {
+  transform: rotate(45deg);
+  background-color: #fff;
+  height: 2px;
+}
+
+nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon:before {
+  transform: translate(8px) rotate(-45deg); 
+  background-color: #fff;
+  height: 2px;
+}
+
+nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
+  border-color: transparent;
+}
+
+/* Estilos del banner */
+.banner {
+  margin-top: 0;
+  padding: 260px 0 100px 0;
+  background-image: url('./assets/img/banner-bg.png');
+  background-position: top center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.banner .tagline {
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  padding: 8px 10px;
+  background: linear-gradient(90.21deg, rgba(170, 54, 124, 0.5) -5.91%, rgba(74, 47, 189, 0.5) 111.58%);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  font-size: 20px;
+  margin-bottom: 16px;
+  display: inline-block;
+}
+
+.banner h1 {
+  font-size: 65px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  line-height: 1;
+  margin-bottom: 20px;
+  display: block;
+}
+
+.banner p {
+  color: #B8B8B8;
+  font-size: 18px;
+  letter-spacing: 0.8px;
+  line-height: 1.5em;
+  width: 96%;
+}
+
+.banner button {
+  background-color: transparent;
+  border: none;
+  color: #fff;
+  font-weight: 700;
+  font-size: 20px;
+  margin-top: 60px;
+  letter-spacing: 0.8px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.banner button svg {
+  font-size: 25px;
+  margin-left: 10px;
+  transition: 0.3s ease-in-out;
+}
+
+.banner button:hover svg {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  margin-left: 25px;
+}
+
+/* Animación de movimiento vertical para las imágenes del banner */
+.banner img {
+  animation: updown 3s ease-in-out infinite;
+}
+
+@keyframes updown {
+  0% {
+    transform: translateY(-20px);
+  }
+  50% {
+    transform: translateY(20px);
+  }
+  100% {
+    transform: translateY(-20px);
+  }
+}
+
+.txt-rotate > .wrap {
+  border-right: 0.08em solid #666;
+}
+
+/* Estilos de la sección de habilidades */
+.skills {
+  padding: 50px 0;
+  position: relative;
+  background-color: #1b1b1b;
+  border-radius: 20px;
+  margin: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.skills-bx {
+  border-radius: 16px;
+  text-align: center;
+  padding: 60px 50px;
+  margin-top: -60px;
+}
+
+.skills h2 {
+  font-size: 45px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.skills p {
+  color: #b8b8b8;
+  font-size: 18px;
+  letter-spacing: 0.8px;
+  line-height: 1.5em;
+  margin: 14px 0 75px 0;
+}
+
+.skills-slider {
+  width: 80%;
+  margin: 0 auto;
+  position: relative;
+}
+
+.skills-slider .item {
+  width: 50%;
+  margin: 0 auto 15px auto;
+}
+
+.background-image-left {
+  top: 0;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -4;
+}
+
+/* Estilos para la aplicación React */
 .App {
   text-align: center;
 }
@@ -28,6 +383,7 @@
   color: #61dafb;
 }
 
+/* Animación de rotación del logo */
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
