@@ -4,7 +4,7 @@ import "react-multi-carousel/lib/styles.css";
 import meter1 from "../assets/img/meter1.svg";
 import meter2 from "../assets/img/meter2.svg";
 import meter3 from "../assets/img/meter3.svg";
-import colorSharp from "../assets/img/color-sharp.png";
+
 
 export const Skills = () => {
   const responsive = {
@@ -55,15 +55,15 @@ export const Skills = () => {
                   <h5>React</h5>
                 </div>
                 <div className="item">
-                  <img src={meter3} alt="Tailwind" />
-                  <h5>Tailwind</h5>
+                  <img src={meter3} alt="Css" />
+                  <h5>Css</h5>
                 </div>
               </Carousel>
             </div>
           </Col>
         </Row>
       </Container>
-      <img className="background-image-left" src={colorSharp} alt="Background" />
+      {/* <img className="background-image-left" src={colorSharp} alt="Background" /> */}
     </section>
   );
 };

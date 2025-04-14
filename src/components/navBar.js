@@ -4,12 +4,8 @@ import { useState, useEffect } from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-// import NavDropdown from 'react-bootstrap/NavDropdown';
-import linkedinIcon from "../assets/img/linkedin_icon.svg";
-import logo from "../assets/img/logo.svg";
 import navIcon1 from "../assets/img/nav-icon1.svg";
-import navIcon2 from "../assets/img/nav-icon2.svg";
-import navIcon3 from "../assets/img/nav-icon3.svg";
+
 
 export const NavBar = () => {
   // Functional component for the navigation bar
@@ -43,7 +39,7 @@ export const NavBar = () => {
       <Container>
         <Navbar.Brand href="#home">
           {/* personal portfolio */}
-          <img src={logo} alt="logo" />
+          {/* <img src={logo} alt="logo" /> */}
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav">
           <span className="navbar-toggler-icon" />
@@ -80,15 +76,19 @@ export const NavBar = () => {
           </Nav>
           <span className="navbar-text">
             <div className="social-icon">
-              <a href="https://www.linkedin.com/in/javierbuend%C3%ADaortega/">
-                 <img src={navIcon1} alt="LinkedIn Icon" />
+              <a
+                href="https://www.linkedin.com/in/javierbuend%C3%ADaortega/"
+                target="_blank">
+                <img src={navIcon1} alt="LinkedIn Icon" />
               </a>
             </div>
-            <button className="vvd" onClick={() => { const contactSection = document.getElementById('connect');
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: 'smooth' });
-    }
-  }}>
+            <button
+              className="vvd"
+              onClick={() => {
+                const contactSection = document.getElementById("connect");
+                if (contactSection) {
+                  contactSection.scrollIntoView({ behavior: "smooth" });
+                }}}>
               <span>Let's Connect!</span>
             </button>
           </span>
