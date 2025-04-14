@@ -81,19 +81,14 @@ export const NavBar = () => {
           <span className="navbar-text">
             <div className="social-icon">
               <a href="https://www.linkedin.com/in/javierbuend%C3%ADaortega/">
-                LinkedIn <img src={linkedinIcon} alt="LinkedIn Icon" />
-              </a>
-              <a href="#">
-                <img src={navIcon1} alt="Icon 1" />
-              </a>
-              <a href="#">
-                <img src={navIcon2} alt="Icon 2" />
-              </a>
-              <a href="#">
-                <img src={navIcon3} alt="Icon 3" />
+                 <img src={navIcon1} alt="LinkedIn Icon" />
               </a>
             </div>
-            <button className="vvd" onClick={() => console.log("connect")}>
+            <button className="vvd" onClick={() => { const contactSection = document.getElementById('connect');
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  }}>
               <span>Let's Connect!</span>
             </button>
           </span>

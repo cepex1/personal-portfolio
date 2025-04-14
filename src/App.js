@@ -1,14 +1,13 @@
-// import linkedinIcon from "../assets/linkedin-icon.png";
-// import logo from "./assets/img/logo.svg";
-// import navIcon1 from "./assets/img/nav-icon1.svg";
-// import navIcon2 from "./assets/img/nav-icon2.svg";
-// import navIcon3 from "./assets/img/nav-icon3.svg";
 
+import logo from './logo.svg';
 import './App.css';
+import "bootstrap/dist/css/bootstrap.min.css";
 import  {NavBar } from './components/navBar';
 import {Banner} from './components/Banner';
 import {Skills} from './components/Skills';
-import "bootstrap/dist/css/bootstrap.min.css";
+import {Projects} from './components/Projects';
+import {Contact} from './components/Contact';
+import { Footer } from './components/Footer';
 
 function App() {
   return (
@@ -16,6 +15,9 @@ function App() {
       <NavBar />
       <Banner />
       <Skills/>
+      <Projects/>
+      <Contact/>
+      <Footer/>
     </div>
   );
 }
