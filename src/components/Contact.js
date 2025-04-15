@@ -30,7 +30,7 @@ const useContactForm = () => {
     setButtonText("Sending...");
     
     try {
-      const response = await fetch("http://localhost:3000/contact", {
+      let response = await fetch("/api/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json;charset=utf-8",
@@ -38,20 +38,25 @@ const useContactForm = () => {
         body: JSON.stringify(formDetails),
       });
       
-      const result = await response.json();
+      let result = await response.json();
+      console.log(result); // Verifica la respuesta del servidor
       
-      if (result.code === 200) {
+      setButtonText("Send");
+      setFormDetails(initialDetails);
+      
+      // Cambia aquí la condición según la respuesta del servidor
+      if (result.status === "Message Sent") {
         setStatus({ success: true, message: "Message sent successfully!" });
-        setFormDetails(initialDetails);
       } else {
-        setStatus({ success: false, message: "Something went wrong, please try again." });
+        setStatus({ success: false, message: "Message failed to send." });
       }
     } catch (error) {
       setStatus({ success: false, message: "Network error, please try again." });
-    } finally {
       setButtonText("Send");
     }
   };
+  
+  
 
   return { formDetails, buttonText, status, onFormUpdate, handleSubmit };
 };

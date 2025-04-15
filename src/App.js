@@ -8,8 +8,14 @@ import {Skills} from './components/Skills';
 import {Projects} from './components/Projects';
 import {Contact} from './components/Contact';
 import { Footer } from './components/Footer';
+import React, {useEffect } from 'react';
 
 function App() {
+  useEffect(() => {
+    fetch("/api")
+      .then((response) => response.json())
+      .then((data) => console.log(data));
+  }, []);
   return (
     <div className="App">
       <NavBar />
