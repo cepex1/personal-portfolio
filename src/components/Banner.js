@@ -65,7 +65,11 @@ export const Banner = () => {
                     functional websites. I have experience in HTML, CSS, JavaScript,
                     and React.
                   </p>
-                  <button onClick={() => console.log("connect")} aria-label="Connect">
+                  <button onClick={() => {
+                const contactSection = document.getElementById("connect");
+                if (contactSection) {
+                  contactSection.scrollIntoView({ behavior: "smooth" });
+                }}}>
                     Let's Connect <ArrowRightCircle size={25} />
                   </button>
                 </div>}
