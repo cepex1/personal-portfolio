@@ -21,7 +21,7 @@ export const Banner = () => {
   useEffect(() => {
     const ticker = setInterval(tick, delta);
     return () => clearInterval(ticker);
-  }, [text, isDeleting, loopNum, delta, tick]);
+  }, [text, isDeleting, loopNum, delta, tick]); // Added dependencies
 
   const tick = () => {
     const i = loopNum % ROLES.length;
