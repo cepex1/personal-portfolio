@@ -19,8 +19,8 @@ export const Banner = () => {
   const { loopNum, isDeleting, text, delta } = state;
 
   useEffect(() => {
-    const ticker = setInterval(tick, delta);
-    return () => clearInterval(ticker);
+    const interval = setInterval(tick, delta);
+    return () => clearInterval(tick);
   }, [text, isDeleting, loopNum, delta]);
 
   const tick = () => {

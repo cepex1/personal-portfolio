@@ -78,7 +78,7 @@ export const NavBar = () => {
             <div className="social-icon">
               <a
                 href="https://www.linkedin.com/in/javierbuend%C3%ADaortega/"
-                target="_blank">
+                target="_blank" rel="noreferrer">
                 <img src={navIcon1} alt="LinkedIn Icon" />
               </a>
             </div>
