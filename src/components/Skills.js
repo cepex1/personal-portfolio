@@ -34,8 +34,8 @@ export const Skills = () => {
             <div className="skills-bx">
               <h2>Skills</h2>
               <p>
-                Good level in JavaScript, right now I'm learning React.js and
-                Tailwind CSS.
+                I have Good level in JavaScript, right now I'm mastering React.js and
+                learing Docker and Angular. I also have a good knowledge of Azure and SQL.
               </p>
               <Carousel
                 responsive={responsive}
@@ -57,6 +57,10 @@ export const Skills = () => {
                 <div className="item">
                   <img src={meter3} alt="Css" />
                   <h5>Css</h5>
+                </div>
+                <div className="item">
+                  <img src={meter2} alt="Css" />
+                  <h5>Azure</h5>
                 </div>
               </Carousel>
             </div>
