@@ -8,13 +8,14 @@ export const Projects = () => { // Functional component definition
   const projects = [
     {
       title: "Movies Homepage",
-      description: "React JS & CSS",
+      description: "click to redirect to the project",
       imgUrl: projImg1,
-      inProgress: true, // Flag to indicate if the project is in progress
+      inProgress: false, // Flag to indicate if the project is in progress
+      url: "https://purple-pebble-03d63bc03.6.azurestaticapps.net/",
     },
     {
       title: "Google gemini clone",
-      description: "React & gemini API",
+      description: "React & gemini API, WIP",
       imgUrl: projImg2,
       inProgress: true,
     },

@@ -25,8 +25,8 @@
 }
 
 html {
-  scroll-behavior: smooth; /* Activar desplazamiento suave */
-  scroll-padding: top 75px; /* Añadir espacio superior en desplazamiento */
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px; /* Ajusta según el tamaño de tu navbar */
 }
 
 body {
@@ -37,6 +37,11 @@ body {
   color: #fff !important; /* Color blanco para el texto */
   font-family: "Centra", sans-serif !important; /* Usar fuente personalizada */
 }
+
+body a {
+  color: #fff !important;
+}
+
 
 h1,
 h2,
@@ -508,13 +513,17 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   position: absolute;
   top: 10px;
   left: 10px;
-  background-color: rgba(255, 165, 0, 0.85); /* naranja semitransparente */
+  background-color: rgba(255, 165, 0, 0.85); /* naranja para WIP */
   color: #fff;
   padding: 5px 10px;
   font-weight: bold;
   font-size: 0.9rem;
   border-radius: 5px;
   z-index: 2;
+}
+
+.proj-overlay.completed {
+  background-color: rgba(0, 128, 0, 0.85); /* verde para completado */
 }
 
 /*********** Contact ***********/
