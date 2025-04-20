@@ -14,7 +14,7 @@ const useContactForm = () => {
   const [formDetails, setFormDetails] = useState(initialDetails);
   const [buttonText, setButtonText] = useState("Send");
   const [status, setStatus] = useState({});
-  const [isFunctional, setIsFunctional] = useState(false); // Estado para controlar si el formulario funciona o no
+  const [isFunctional, setIsFunctional] = useState(false); // Marcamos como no funcional (siempre falso)
 
   const onFormUpdate = (field, value) => {
     setFormDetails(prev => ({
@@ -26,6 +26,9 @@ const useContactForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setButtonText("Sending...");
+    
+    // Para este caso, no hace nada el formulario, solo desactiva la funcionalidad temporalmente
+    setIsFunctional(false); // Asegura que no se pueda enviar nada
 
     try {
       let response = await fetch("/api/contact", {
@@ -53,7 +56,7 @@ const useContactForm = () => {
     }
   };
 
-  return { formDetails, buttonText, status, isFunctional, onFormUpdate, handleSubmit, setIsFunctional };
+  return { formDetails, buttonText, status, isFunctional, onFormUpdate, handleSubmit };
 };
 
 const ContactFormInput = ({ type, value, placeholder, onChange, className }) => (
@@ -67,15 +70,15 @@ const ContactFormInput = ({ type, value, placeholder, onChange, className }) => 
 );
 
 export const Contact = () => {
-  const { formDetails, buttonText, status, isFunctional, onFormUpdate, handleSubmit, setIsFunctional } = useContactForm();
+  const { formDetails, buttonText, status, isFunctional, onFormUpdate, handleSubmit } = useContactForm();
 
   return (
     <section className="contact" id="connect">
-      {/* Mostrar mensaje si el formulario no es funcional */}
+      {/* Mostrar mensaje de "Working on it" ya que el formulario no es funcional */}
       {!isFunctional && (
         <div className="working-on-it-overlay">
           <div className="working-on-it-message">
-            Working on it, please contact me via linkedin or phone.
+            Working on it, please contact me via LinkedIn or phone.
           </div>
         </div>
       )}
@@ -113,7 +116,7 @@ export const Contact = () => {
                     onChange={(e) => onFormUpdate("message", e.target.value)}
                     className="w-100"
                   />
-                  <button type="submit" className="mt-3">
+                  <button type="submit" className="mt-3" disabled>
                     <span>{buttonText}</span>
                   </button>
                 </Col>
