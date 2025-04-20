@@ -9,7 +9,6 @@ on:
     branches:
       - master
 
-
 jobs:
   build_and_deploy_job:
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
@@ -30,9 +29,9 @@ jobs:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_AGREEABLE_DESERT_0E5B58A03 }}
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: "upload"
-          app_location: "/"                # Ajusta si tu código fuente no está en la raíz
-          api_location: ""                 # No usas funciones de Azure, así que está bien dejarlo vacío
-          output_location: "build"         # Verifica que esta es la carpeta de salida de tu build
+          app_location: "/"                # Ruta del código fuente (raíz del proyecto)
+          api_location: ""                 # No usas funciones de Azure
+          output_location: "build"         # Carpeta de salida del build
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
@@ -44,6 +43,6 @@ jobs:
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_AGREEABLE_DESERT_0E5B58A03 }}
           action: "delete"
-          app_location: "/"                # Ajusta si tu código fuente no está en la raíz
+          app_location: "/"                # Ruta del código fuente (raíz del proyecto)
           api_location: ""                 # No usas funciones de Azure
-          output_location: "build"         # Verifica que esta es la carpeta de salida de tu build
+          output_location: "build"         # Carpeta de salida del build
