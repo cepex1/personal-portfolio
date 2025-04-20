@@ -1,6 +1,3 @@
-// The Contact component allows users to fill out a form with their contact details. It includes fields for first name, last name, email address, and phone number. The component uses Bootstrap for styling and layout. The form details are managed using React's useState hook, allowing for dynamic updates as the user types in the input fields. The contact image is imported from assets and displayed alongside the form.
-
-
 import { useState } from "react";
 import { Row, Col, Container } from "react-bootstrap";
 import contactImg from "../assets/img/contact-img.svg";
@@ -17,6 +14,7 @@ const useContactForm = () => {
   const [formDetails, setFormDetails] = useState(initialDetails);
   const [buttonText, setButtonText] = useState("Send");
   const [status, setStatus] = useState({});
+  const [isFunctional, setIsFunctional] = useState(false); // Estado para controlar si el formulario funciona o no
 
   const onFormUpdate = (field, value) => {
     setFormDetails(prev => ({
@@ -28,7 +26,7 @@ const useContactForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setButtonText("Sending...");
-    
+
     try {
       let response = await fetch("/api/contact", {
         method: "POST",
@@ -37,14 +35,13 @@ const useContactForm = () => {
         },
         body: JSON.stringify(formDetails),
       });
-      
+
       let result = await response.json();
       console.log(result); // Verifica la respuesta del servidor
-      
+
       setButtonText("Send");
       setFormDetails(initialDetails);
-      
-      // Cambia aquí la condición según la respuesta del servidor
+
       if (result.status === "Message Sent") {
         setStatus({ success: true, message: "Message sent successfully!" });
       } else {
@@ -55,10 +52,8 @@ const useContactForm = () => {
       setButtonText("Send");
     }
   };
-  
-  
 
-  return { formDetails, buttonText, status, onFormUpdate, handleSubmit };
+  return { formDetails, buttonText, status, isFunctional, onFormUpdate, handleSubmit, setIsFunctional };
 };
 
 const ContactFormInput = ({ type, value, placeholder, onChange, className }) => (
@@ -72,10 +67,19 @@ const ContactFormInput = ({ type, value, placeholder, onChange, className }) => 
 );
 
 export const Contact = () => {
-  const { formDetails, buttonText, status, onFormUpdate, handleSubmit } = useContactForm();
+  const { formDetails, buttonText, status, isFunctional, onFormUpdate, handleSubmit, setIsFunctional } = useContactForm();
 
   return (
     <section className="contact" id="connect">
+      {/* Mostrar mensaje si el formulario no es funcional */}
+      {!isFunctional && (
+        <div className="working-on-it-overlay">
+          <div className="working-on-it-message">
+            Working on it...
+          </div>
+        </div>
+      )}
+      
       <Container>
         <Row className="align-items-center">
           <Col md={6}>
@@ -85,7 +89,7 @@ export const Contact = () => {
             <h2>Get In Touch</h2>
             <form onSubmit={handleSubmit}>
               <Row>
-                {[
+                {[ 
                   { field: "firstName", type: "text", placeholder: "First Name", size: 6 },
                   { field: "lastName", type: "text", placeholder: "Last Name", size: 6 },
                   { field: "email", type: "email", placeholder: "Email Address", size: 6 },

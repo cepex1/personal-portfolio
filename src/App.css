@@ -530,6 +530,7 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 .contact {
   background: linear-gradient(90.21deg, #aa367c -5.91%, #4a2fbd 111.58%);
   padding: 60px 0 200px;
+  position: relative; /* Necesario para el overlay dentro de esta sección */
 }
 .contact img {
   width: 92%;
@@ -596,6 +597,44 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 .contact form button:hover::before {
   width: 100%;
 }
+
+/*********** Working on it Overlay (solo en la sección Contact) ***********/
+.working-on-it-overlay {
+  position: absolute; /* Posición absoluta dentro de .contact */
+  top: 0;
+  left: 0;
+  width: 100%; /* Ocupa todo el ancho de la sección */
+  height: 100%; /* Ocupa toda la altura de la sección */
+  background-color: rgba(0, 0, 0, 0.6); /* Fondo semitransparente negro */
+  display: flex; /* Usa flexbox para centrar el contenido */
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
+  z-index: 999; /* Asegura que el mensaje esté por encima de otros elementos dentro de la sección */
+}
+
+/*********** Mensaje de "Working on it..." ***********/
+.working-on-it-message {
+  font-size: 50px; /* Tamaño grande del texto */
+  font-weight: bold; /* Negrita */
+  color: white; /* Texto blanco */
+  text-align: center; /* Alinea el texto al centro */
+  letter-spacing: 2px; /* Espaciado entre las letras */
+  padding: 20px; /* Relleno alrededor del texto */
+  background-color: rgba(0, 0, 0, 0.8); /* Fondo opaco para el mensaje */
+  border-radius: 10px; /* Bordes redondeados */
+  animation: fadeIn 1s ease-in-out; /* Animación para que el mensaje aparezca suavemente */
+}
+
+/* Animación para que el mensaje "Working on it" aparezca de forma suave */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 
 /************ Variables ************/
 :root {
