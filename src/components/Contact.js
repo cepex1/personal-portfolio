@@ -75,7 +75,7 @@ export const Contact = () => {
       {!isFunctional && (
         <div className="working-on-it-overlay">
           <div className="working-on-it-message">
-            Working on it...
+            Working on it, please contact me via linkedin or phone.
           </div>
         </div>
       )}
