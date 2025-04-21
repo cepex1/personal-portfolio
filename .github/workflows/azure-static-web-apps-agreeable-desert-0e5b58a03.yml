@@ -50,3 +50,5 @@ jobs:
           app_location: "/"                 # Ajusta si tu código no está en la raíz
           api_location: ""                  # No usas funciones de Azure
           output_location: "build"          # Asegúrate de que esta es la carpeta de salida de tu build
+
+          
