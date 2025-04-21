@@ -29,8 +29,8 @@ jobs:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_AGREEABLE_DESERT_0E5B58A03 }}
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: "upload"
-          app_location: "/"                # Ajusta si tu código fuente no está en la raíz
-          api_location: ""                 # No usas funciones de Azure, así que está bien dejarlo vacío
+          app_location: "/"                # Ajusta según la ubicación de tu app (en raíz o subcarpeta)
+          api_location: ""                 # No usas funciones de Azure
           output_location: "build"         # Verifica que esta es la carpeta de salida de tu build
 
   close_pull_request_job:
