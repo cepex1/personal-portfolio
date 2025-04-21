@@ -14,7 +14,6 @@ const useContactForm = () => {
   const [formDetails, setFormDetails] = useState(initialDetails);
   const [buttonText, setButtonText] = useState("Send");
   const [status, setStatus] = useState({});
-  const [isFunctional, setIsFunctional] = useState(false); // Marcamos como no funcional (siempre falso)
 
   const onFormUpdate = (field, value) => {
     setFormDetails(prev => ({
@@ -26,37 +25,33 @@ const useContactForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setButtonText("Sending...");
-    
-    // Para este caso, no hace nada el formulario, solo desactiva la funcionalidad temporalmente
-    setIsFunctional(false); // Asegura que no se pueda enviar nada
 
     try {
-      let response = await fetch("/api/contact", {
+      let response = await fetch("https://formspree.io/f/xrbqzlol", { // Reemplaza con tu ID real
         method: "POST",
         headers: {
-          "Content-Type": "application/json;charset=utf-8",
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(formDetails),
       });
 
-      let result = await response.json();
-      console.log(result); // Verifica la respuesta del servidor
-
-      setButtonText("Send");
-      setFormDetails(initialDetails);
-
-      if (result.status === "Message Sent") {
+      if (response.ok) {
         setStatus({ success: true, message: "Message sent successfully!" });
+        setFormDetails(initialDetails);
       } else {
+        const errorText = await response.text();
+        console.error("Formspree error:", errorText);
         setStatus({ success: false, message: "Message failed to send." });
       }
     } catch (error) {
+      console.error("Network error:", error);
       setStatus({ success: false, message: "Network error, please try again." });
-      setButtonText("Send");
     }
+
+    setButtonText("Send");
   };
 
-  return { formDetails, buttonText, status, isFunctional, onFormUpdate, handleSubmit };
+  return { formDetails, buttonText, status, onFormUpdate, handleSubmit };
 };
 
 const ContactFormInput = ({ type, value, placeholder, onChange, className }) => (
@@ -70,19 +65,10 @@ const ContactFormInput = ({ type, value, placeholder, onChange, className }) => 
 );
 
 export const Contact = () => {
-  const { formDetails, buttonText, status, isFunctional, onFormUpdate, handleSubmit } = useContactForm();
+  const { formDetails, buttonText, status, onFormUpdate, handleSubmit } = useContactForm();
 
   return (
     <section className="contact" id="connect">
-      {/* Mostrar mensaje de "Working on it" ya que el formulario no es funcional */}
-      {!isFunctional && (
-        <div className="working-on-it-overlay">
-          <div className="working-on-it-message">
-            Working on it, please contact me via LinkedIn or phone.
-          </div>
-        </div>
-      )}
-      
       <Container>
         <Row className="align-items-center">
           <Col md={6}>
@@ -116,7 +102,7 @@ export const Contact = () => {
                     onChange={(e) => onFormUpdate("message", e.target.value)}
                     className="w-100"
                   />
-                  <button type="submit" className="mt-3" disabled>
+                  <button type="submit" className="mt-3">
                     <span>{buttonText}</span>
                   </button>
                 </Col>
