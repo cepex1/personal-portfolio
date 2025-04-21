@@ -22,7 +22,7 @@ const useContactForm = () => {
     }));
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e) => { // Prevent default form submission
     e.preventDefault();
     setButtonText("Sending...");
 
