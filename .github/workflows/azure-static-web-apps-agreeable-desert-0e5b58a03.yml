@@ -3,44 +3,47 @@ name: Azure Static Web Apps CI/CD
 on:
   push:
     branches:
-      - main
+      - master
   pull_request:
     types: [opened, synchronize, reopened, closed]
     branches:
-      - main
+      - master
+
 
 jobs:
   build_and_deploy_job:
-    if: github.event_name == 'push'  
+    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
     runs-on: ubuntu-latest
     name: Build and Deploy Job
     steps:
       - uses: actions/checkout@v3
-
+        with:
+          submodules: true
+          lfs: false
       - name: Install Dependencies
         run: npm install
-
       - name: Build the App
         run: npm run build
-
       - name: Deploy to Azure Static Web Apps
         uses: Azure/static-web-apps-deploy@v1
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_AGREEABLE_DESERT_0E5B58A03 }}
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: "upload"
-          app_location: "."  # El código fuente está en la raíz
-          api_location: ""  # No usas funciones de Azure
-          output_location: "build"  # Carpeta de salida del build
+          app_location: "/"                # Ajusta si tu código fuente no está en la raíz
+          api_location: ""                 # No usas funciones de Azure, así que está bien dejarlo vacío
+          output_location: "build"         # Verifica que esta es la carpeta de salida de tu build
 
   close_pull_request_job:
-    if: github.event_name == 'pull_request' && github.event.action == 'closed'  
+    if: github.event_name == 'pull_request' && github.event.action == 'closed'
     runs-on: ubuntu-latest
     name: Close Pull Request Job
     steps:
       - name: Close Pull Request
         uses: Azure/static-web-apps-deploy@v1
         with:
-          action: "close"
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_AGREEABLE_DESERT_0E5B58A03 }}
-          app_location: "."  # Si usas funciones de Azure en un futuro, cambia aquí
+          action: "delete"
+          app_location: "/"                # Ajusta si tu código fuente no está en la raíz
+          api_location: ""                 # No usas funciones de Azure
+          output_location: "build"         # Verifica que esta es la carpeta de salida de tu build
