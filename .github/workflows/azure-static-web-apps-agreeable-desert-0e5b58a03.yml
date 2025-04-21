@@ -11,7 +11,7 @@ on:
 
 jobs:
   build_and_deploy_job:
-    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
+    if: github.event_name == 'push'  # Solo desplegar cuando hay un push a la rama main
     runs-on: ubuntu-latest
     name: Build and Deploy Job
     steps:
@@ -29,12 +29,12 @@ jobs:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_AGREEABLE_DESERT_0E5B58A03 }}
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: "upload"
-          app_location: "."                # Código fuente en raíz
-          api_location: ""                 # No usas funciones de Azure
-          output_location: "build"         # Carpeta de salida del build
-          
+          app_location: "."  # El código fuente está en la raíz
+          api_location: ""  # No usas funciones de Azure
+          output_location: "build"  # Carpeta de salida del build
+
   close_pull_request_job:
-    if: github.event_name == 'pull_request' && github.event.action == 'closed'
+    if: github.event_name == 'pull_request' && github.event.action == 'closed'  # Solo cuando el PR es cerrado
     runs-on: ubuntu-latest
     name: Close Pull Request Job
     steps:
@@ -43,4 +43,4 @@ jobs:
         with:
           action: "close"
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_AGREEABLE_DESERT_0E5B58A03 }}
-          app_location: "."  # <-- Añade esto
+          app_location: "."  # Si usas funciones de Azure en un futuro, cambia aquí
