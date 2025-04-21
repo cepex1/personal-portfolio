@@ -10,7 +10,7 @@ import React, {useEffect } from 'react';
 
 function App() {
   useEffect(() => {
-    fetch("/api")
+    fetch("https://formspree.io/f/xrbqzlol")
       .then((response) => response.json())
       .then((data) => console.log(data));
   }, []);

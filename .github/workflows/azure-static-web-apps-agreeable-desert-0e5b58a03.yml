@@ -11,7 +11,7 @@ on:
 
 jobs:
   build_and_deploy_job:
-    if: github.event_name == 'push'  # Solo desplegar cuando hay un push a la rama main
+    if: github.event_name == 'push'  
     runs-on: ubuntu-latest
     name: Build and Deploy Job
     steps:
@@ -34,7 +34,7 @@ jobs:
           output_location: "build"  # Carpeta de salida del build
 
   close_pull_request_job:
-    if: github.event_name == 'pull_request' && github.event.action == 'closed'  # Solo cuando el PR es cerrado
+    if: github.event_name == 'pull_request' && github.event.action == 'closed'  
     runs-on: ubuntu-latest
     name: Close Pull Request Job
     steps:
