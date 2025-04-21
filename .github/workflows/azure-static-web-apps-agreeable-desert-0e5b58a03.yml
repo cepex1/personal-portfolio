@@ -33,9 +33,9 @@ jobs:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_AGREEABLE_DESERT_0E5B58A03 }}
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: "upload"
-          app_location: "/"                 # Ajusta la ruta si tu código no está en la raíz
-          api_location: ""                  # Si no usas funciones de Azure, deja esto vacío
-          output_location: "build"          # Asegúrate de que esta es la carpeta de salida de tu build
+          app_location: "/"               
+          api_location: "api"              # <- Aquí está el cambio
+          output_location: "build"
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
@@ -47,8 +47,6 @@ jobs:
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_AGREEABLE_DESERT_0E5B58A03 }}
           action: "delete"
-          app_location: "/"                 # Ajusta si tu código no está en la raíz
-          api_location: ""                  # No usas funciones de Azure
-          output_location: "build"          # Asegúrate de que esta es la carpeta de salida de tu build
-
-          
+          app_location: "/"               
+          api_location: "api"              # <- Igual aquí
+          output_location: "build"
